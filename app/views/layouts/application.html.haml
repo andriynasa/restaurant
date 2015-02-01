@@ -6,9 +6,12 @@
     																				'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    %link{:href => "http://fonts.googleapis.com/css?family=Lobster", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Lobster", 
+                                      rel: "stylesheet", type: "text/css"}/
   %body
     %br/
+    - if user_signed_in?
+      .right= link_to('Logout', destroy_user_session_path, method: :delete)
     %h2.center
       %a{:href => "#"} Restaurant 'Vodkabar'
     = yield
