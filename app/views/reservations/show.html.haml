@@ -1,0 +1,26 @@
+.mymodal.width-800 
+  .mymodal-title
+    %h4= "Reservation # #{@reservation.id}"
+  .mymodal-body
+    %table.table
+      %thead
+        %tr
+          %th Id
+          %th.wdt12 Table #
+          %th Name
+          %th Phone
+          %th Start at
+          %th End at
+          %th
+          %th
+          
+      %tbody
+        %tr
+          %td= link_to @reservation.id, @reservation
+          %td= @reservation.table_number
+          %td= @reservation.name
+          %td= @reservation.phone
+          %td= h_date @reservation.start_at
+          %td= h_date @reservation.end_at
+          %td= link_to 'Edit', edit_reservation_path(@reservation)
+          %td= link_to 'Destroy', @reservation, method: :delete, data: { confirm: 'Are you sure?' }
