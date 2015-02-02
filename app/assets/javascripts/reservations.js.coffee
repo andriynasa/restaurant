@@ -1,4 +1,4 @@
-$(document).ready ->
+ready = ->
   $('.timepicker').timepicker
     'step': 30
     'timeFormat': 'H:i'
@@ -9,3 +9,5 @@ $(document).ready ->
     $("#reservation_table_number").val $(this).attr('value')
     return
   return
+$(document).ready(ready)
+$(document).on('page:load', ready)

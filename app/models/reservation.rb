@@ -1,9 +1,10 @@
 class Reservation < ActiveRecord::Base
 
 # Validations =================================================================
-	validates_presence_of :table_number, :start_at, :end_at, :name, :phone
+	validates_presence_of :table_number, :name, :phone, 
+		:start_at_time, :start_at_date, :end_at_time
 	validates_numericality_of :table_number, only_integer: true
-	validates :table_number, inclusion: 1..10
+	validates :table_number, inclusion: 1..12
 	validates :start_at, :end_at, overlap: {scope: "table_number"}
 	validate :datetime_interval
 # Callbacks ===================================================================
@@ -25,23 +26,27 @@ class Reservation < ActiveRecord::Base
 	end
 
 	def start_at_date= date
+		return unless date.present?
 	  @start_at_date = Date.parse(date).strftime("%Y-%m-%d")
 	end
-
 	def start_at_time= time
+		return unless time.present?
 	  @start_at_time = Time.parse(time).strftime("%H:%M")
 	end
 
 	def end_at_time= time
+		return unless time.present?
 		@end_at_time = Time.parse(time).strftime("%H:%M")
 	end
 
 	def convert_to_datetime
-	  self.start_at = DateTime.parse("#{@start_at_date} #{@start_at_time}")
+		return nil unless (@start_at_date || @start_at_time || @end_at_time)
+ 	  self.start_at = DateTime.parse("#{@start_at_date} #{@start_at_time}")
 	  self.end_at = DateTime.parse("#{@start_at_date} #{@end_at_time}")
 	end
 
 	def datetime_interval
+		return nil unless self.start_at || self.end_at
 		if self.start_at > self.end_at
 			errors.add :end_at, I18n.t("errors.date_interval_error")
 		end

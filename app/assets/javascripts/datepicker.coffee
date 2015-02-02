@@ -97,7 +97,7 @@ $ ->
         dateFormat: dateFormat,
         changeMonth: true,
         changeYear: true
-        yearRange: "1950:2030"
+        yearRange: "2015:2017"
       $(@nextSibling).hide()  if @value is ""
 
     $(".clear-picker").click ->
@@ -123,7 +123,7 @@ $ ->
         firstDay: 1,
         changeMonth: true,
         changeYear: true
-        yearRange: "1950:2030",
+        yearRange: "2015:2017",
         onSelect: (date, obj) ->
           
           $(".ui-datepicker a").removeAttr("href")

@@ -12,10 +12,7 @@
  *
  *= require_tree .
  *= require_self
- *= require jquery-ui
  *= require jquery.timepicker.css
- *= require bootstrap.min.css
- *= require style.css
  */
 
 @import url(http://fonts.googleapis.com/css?family=Dancing+Script);
@@ -29,4 +26,25 @@ h1, h2, h3, th, td, a, .mymodal, .ui-timepicker-list li{
 }
 input, button, select, textarea {
 	font-family: 'Dancing Script', cursive;
+}
+.ui-datepicker-calendar {
+	thead{ color: black;}
+	td{ padding: 5px;}
+}
+#ui-datepicker-div{
+	padding: 10px;
+	background-color: white;
+}
+.ui-datepicker-prev.ui-corner-all, .ui-datepicker-title{
+	float:left;
+}
+.ui-datepicker-next.ui-corner-all{
+	float:right;
+}
+.ui-datepicker-month{
+	width: 45%;
+	font-family: 'Dancing Script', cursive;
+}
+.ui-datepicker select.ui-datepicker-year{
+	width: 55%;
 }
